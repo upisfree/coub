@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
-    concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    coffeeify = require('gulp-coffeeify');
+    coffeeify = require('gulp-coffeeify'),
+    nodemon = require('gulp-nodemon');
 
 gulp.task('release', function()
 {
@@ -15,9 +15,12 @@ gulp.task('dev', function()
 {
   gulp.watch('./src/**/*.coffee', function()
   {
-    return gulp.src('./src/index.coffee')
-               .pipe(coffeeify())
-              // .pipe(uglify())
-               .pipe(gulp.dest('./bin'));
+    gulp.src('./src/index.coffee')
+        .pipe(coffeeify())
+        .pipe(gulp.dest('./bin'));
+
+    nodemon({
+      script: './bin/index.js'
+    })
   });
 });

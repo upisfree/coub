@@ -1,6 +1,6 @@
 api =
   getVideo: (id) ->
-    return 0
+    return 100
   linkToID: (link) ->
     return 0
 
