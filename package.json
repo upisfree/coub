@@ -1,5 +1,5 @@
 {
-  "name": "coub-terminal-player",
+  "name": "coub",
   "version": "1.0.0",
   "description": "Watch coubs in your terminal.",
   "main": "index.js",
@@ -8,25 +8,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/upisfree/coub-terminal-player.git"
+    "url": "git+https://github.com/upisfree/coub.git"
   },
   "keywords": [
     "coub",
     "video",
     "loop",
-    "ascii"
+    "ascii",
+    "player"
   ],
   "author": "upisfree",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/upisfree/coub-terminal-player/issues"
+    "url": "https://github.com/upisfree/coub/issues"
   },
-  "homepage": "https://github.com/upisfree/coub-terminal-player#readme",
+  "homepage": "https://github.com/upisfree/coub#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-coffeeify": "^0.1.8",
     "gulp-nodemon": "^2.0.4",
     "gulp-uglify": "^1.4.2",
-    "gulp-util": "^3.0.7"
+    "gulp-util": "^3.0.7",
+    "request": "^2.65.0"
   }
 }
