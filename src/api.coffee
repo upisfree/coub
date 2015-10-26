@@ -1,8 +1,13 @@
+request = require 'request'
+config = require './config.js'
+
 api =
-  getVideo: (id) ->
-    return 100
-  linkToID: (link) ->
-    return 0
+  getCoub: (permalink, callback) ->
+    request "http://coub.com/api/v#{config.apiVersion}/coubs/#{permalink}", (error, res, body) ->
+      if not error and res.statusCode is 200
+        callback body
+      else
+        throw error
 
 # export
 module.exports = api

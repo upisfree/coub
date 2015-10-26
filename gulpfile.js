@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
-    coffeeify = require('gulp-coffeeify'),
+    coffee = require('gulp-coffee'),
     nodemon = require('gulp-nodemon');
 
 gulp.task('release', function()
@@ -15,12 +15,16 @@ gulp.task('dev', function()
 {
   gulp.watch('./src/**/*.coffee', function()
   {
-    gulp.src('./src/index.coffee')
-        .pipe(coffeeify())
+    gulp.src('./src/**/*.coffee')
+        .pipe(coffee(
+        {
+          bare: true
+        }))
         .pipe(gulp.dest('./bin'));
 
-    nodemon({
+    nodemon(
+    {
       script: './bin/index.js'
-    })
+    });
   });
 });

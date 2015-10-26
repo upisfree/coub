@@ -1,3 +1,3 @@
-api = require './api.coffee'
+Coub = require './coub.js'
 
-console.log api.getVideo()
+coub = new Coub '7tosm'
