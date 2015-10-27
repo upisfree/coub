@@ -1,3 +1,3 @@
 Coub = require './coub.js'
 
-coub = new Coub '7tosm'
+coub = new Coub '8lm10'

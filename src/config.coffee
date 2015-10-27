@@ -1,4 +1,5 @@
 config =
+  tmp: './tmp/'
   apiVersion: 2
 
 # export
