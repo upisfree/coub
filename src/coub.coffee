@@ -25,7 +25,7 @@ class Coub
              .pipe fs.createWriteStream "#{config.tmp}input.mp4"
              .on 'finish', ->
                 # create frames
-                shell.exec "ffmpeg -i #{config.tmp}input.mp4 -r 25 #{config.tmp}output_%04d.png"
+                shell.exec "ffmpeg -i #{config.tmp}input.mp4 -r 30 #{config.tmp}output_%04d.png"
 
   onready: ->
 
