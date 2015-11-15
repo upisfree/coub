@@ -1,29 +1,23 @@
-# convert png to array of pixels
-fs = require 'fs'
+# convert png to compressed array of pixels
 pngparse = require 'pngparse'
-colors = require 'ansi-256-colors'
-config = require './config.js'
-require './utils.js'
-
 
 # convert coordinates to index
 c2i = (x, y, w) ->
   w * y + x
 
-convert = ->
-  pngparse.parseFile "#{config.tmp}output_0001.png", (err, data) ->
+convert = (buffer, callback) ->
+  pngparse.parse buffer, (err, data) ->
     if err
       throw err
 
-    # copmress
     compressed = []
 
     iw = data.width             # image width
     ih = data.height            # image height
     tw = process.stdout.columns # terminal width
     th = process.stdout.rows    # terminal height
-    sx = iw / tw                # step x
-    sy = ih / th                # step y
+    sx = Math.round iw / tw     # step x (ceil cause we want to fill all screen)
+    sy = Math.round ih / th     # step y
     sm = sx * sy                # step multiplier
     
     # temporary vars
@@ -38,7 +32,7 @@ convert = ->
 
     i = 0
 
-    # compressing...
+    # begin?¿?
     while i < data.data.length # data.data is Uint8ClampedArray of rgb(a) values
       if i % data.channels and i isnt 0 # data.channels is usualy 3 — rgb
         # check x border
@@ -78,23 +72,7 @@ convert = ->
         x++
       i++
 
-    # WRITE
-    str = ''
-    CHAR_HALF_BLOCK = String.fromCharCode 9604
-
-    for i in compressed
-      r = Math.round i[0] / 255 * 5
-      g = Math.round i[1] / 255 * 5
-      b = Math.round i[2] / 255 * 5
-      
-      str += colors.bg.getRgb(r, g, b) +
-             colors.fg.getRgb(r, g, b) +
-             CHAR_HALF_BLOCK
-
-    process.stdout.cursorTo 0, 0
-    console.log str
-
-    # fs.writeFile config.tmp + 'test.json', JSON.stringify compressed
+    callback compressed
 
 # export
 module.exports = convert

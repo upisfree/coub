@@ -2,8 +2,9 @@ fs = require 'fs'
 request = require 'request'
 FFmpeg = require 'plain-ffmpeg'
 shell = require 'shelljs'
-api = require './api.js'
 config = require './config.js'
+api = require './api.js'
+cycle = require './cycle.js'
 
 class Coub
   constructor: (@permalink) ->
@@ -18,15 +19,18 @@ class Coub
       # if @audio
       #   request(@audio).pipe fs.createWriteStream './bin/tmp/input.mp3'
    
-      @video = @json.file_versions.web.template.replace(/\%\{type\}/g, 'mp4').replace(/\%\{version\}/g, 'big')
+      fs.writeFile 'tmp/test.json', JSON.stringify @json
+
+      @video = @json.file_versions.web.template.replace(/\%\{type\}/g, 'mp4').replace(/\%\{version\}/g, 'small')
 
       # download video
       request.get @video
              .pipe fs.createWriteStream "#{config.tmp}input.mp4"
              .on 'finish', ->
                 # create frames
-                shell.exec "ffmpeg -i #{config.tmp}input.mp4 -r 30 #{config.tmp}output_%04d.png"
-
+                shell.exec "ffmpeg -i #{config.tmp}input.mp4 -r 25 #{config.tmp}frame_%3d.png"
+                
+                cycle()
   onready: ->
 
 # export

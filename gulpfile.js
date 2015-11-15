@@ -11,23 +11,23 @@ var gulp = require('gulp'),
 //              .pipe(gulp.dest('.'));
 // });
 
-// gulp.task('dev', function()
-// {
-//   gulp.watch('./src/**/*.coffee', function()
-//   {
-//     gulp.src('./src/**/*.coffee')
-//         .pipe(coffee(
-//         {
-//           bare: true
-//         }))
-//         .pipe(gulp.dest('./bin'));
+gulp.task('dev', function()
+{
+  gulp.watch('./src/**/*.coffee', function()
+  {
+    gulp.src('./src/**/*.coffee')
+        .pipe(coffee(
+        {
+          bare: true
+        }))
+        .pipe(gulp.dest('./bin'));
 
-//     nodemon(
-//     {
-//       script: './bin/index.js'
-//     });
-//   });
-// });
+    nodemon(
+    {
+      script: './bin/index.js'
+    });
+  });
+});
 
 gulp.task('compile', function()
 {
