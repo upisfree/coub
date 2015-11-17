@@ -1,7 +1,7 @@
 # I can't use “loop” word :(
 fs = require 'fs'
 path = require 'path'
-config = require './config.js'
+config = require '../config.js'
 show = require './show.js'
 
 cycle = ->

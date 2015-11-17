@@ -1,5 +1,5 @@
 request = require 'request'
-config = require './config.js'
+config = require '../config.js'
 
 api =
   getCoub: (permalink, callback) ->
