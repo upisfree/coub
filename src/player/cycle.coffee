@@ -2,22 +2,10 @@
 fs = require 'fs'
 path = require 'path'
 config = require '../config.js'
-show = require './show.js'
+print = require './print.js'
 
 cycle = ->
   buffers = []
-
-  # console.log process.stdout
-
-  # rr = fs.createReadStream '/dev/stdout'
-  # rr.on 'readable', ->
-  #   console.log 'readable:', rr.read()
-
-  # rr.on 'end', ->
-  #   console.log 'end'
-
-  # fs.readFile '/dev/stdout', (err2, data) ->
-  #   console.log err2, data
 
   fs.readdir config.tmp, (err, files) ->
     for i in files
@@ -38,10 +26,7 @@ cycle = ->
         i = 0
 
       if buffers.length isnt 0
-        # time = Date.now()
-        # show buffers[0]
-        # console.log Date.now() - time
-        show buffers[i]
+        print buffers[i]
         i++
     , 15
 # export

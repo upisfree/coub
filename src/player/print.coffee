@@ -3,7 +3,7 @@ convert = require './convert.js'
 
 CHAR_FULL_BLOCK = String.fromCharCode 9608
 
-show = (buffer) ->
+print = (buffer) ->
   convert buffer, (data) -> # data is an array of rgb pixels
     w = process.stdout.columns
     str = ''
@@ -26,4 +26,4 @@ show = (buffer) ->
       i++
 
 # export
-module.exports = show
+module.exports = print
