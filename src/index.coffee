@@ -1,5 +1,10 @@
-Player = require './player/player.js'
-permalinkFromURL = require './utils/permalinkFromURL.js'
+play = require './play.js'
+help = require './help.js'
 
-player = new Player
-player.play permalinkFromURL 'http://coub.com/view/97tzi'
+switch process.argv[2]
+  when 'play'
+    play process.argv[3]
+  when 'help'
+    help()
+  else
+    help()

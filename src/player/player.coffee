@@ -29,7 +29,7 @@ class Player
              .pipe fs.createWriteStream "#{config.tmp}input.mp4"
              .on 'finish', ->
                 # create frames
-                shell.exec "ffmpeg -i #{config.tmp}input.mp4 -r 25 #{config.tmp}frame_%3d.png"
+                shell.exec "ffmpeg -i #{config.tmp}input.mp4 -r 25 -loglevel quiet #{config.tmp}frame_%3d.png"
                 
                 cycle()
 

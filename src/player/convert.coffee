@@ -19,7 +19,7 @@ convert = (buffer, callback) ->
     sx = Math.round iw / tw     # step x (ceil cause we want to fill all screen)
     sy = Math.round ih / th     # step y
     sm = sx * sy                # step multiplier
-    
+
     # temporary vars
     r = 0
     g = 0
