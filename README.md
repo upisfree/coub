@@ -1,6 +1,10 @@
 # coub-terminal-player
 Watch coubs in your terminal.
 
+[Demo](https://youtu.be/fnYYdxBFJQI).
+
+![](/gif.gif?raw=true)
+
 ## Install
 ```bash
 brew install ffmpeg # on Mac OS X
